@@ -1,8 +1,4 @@
-{{ config(
-    materialized = 'table'
-) }}
-
--- Simple typed view over the housing.rent_account source
+with rent_account_stg as (
 
 select
   cast(rent_account_id as string)   as rent_account_id,
@@ -13,4 +9,6 @@ select
   cast(balance as numeric)          as balance,
   created_at                        as created_at,
   updated_at                        as updated_at
-from {{ source('housing', 'rent_account') }};
+from {{ source('housing', 'rent_account') }})
+
+select * from rent_account_stg

@@ -1,9 +1,4 @@
-{{ config(
-    materialized = 'table'
-) }}
-
-
-with assets as (
+with asset_stg as (
 
 select
   cast(asset_id as string)       as asset_id,
@@ -15,4 +10,6 @@ select
   cast(build_date as date)       as build_date,
   created_at                     as created_at,
   updated_at                     as updated_at
-from {{ source('housing', 'asset') }};
+from {{ source('housing', 'asset') }})
+
+select * from asset_stg

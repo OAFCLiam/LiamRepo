@@ -1,8 +1,4 @@
-{{ config(
-    materialized = 'table'
-) }}
-
--- Simple typed view over the housing.tenancy source
+with tenancy_stg as (
 
 select
   cast(tenancy_id as string)        as tenancy_id,
@@ -13,4 +9,8 @@ select
   upper(tenancy_status)             as tenancy_status,
   created_at                        as created_at,
   updated_at                        as updated_at
-from {{ source('housing', 'tenancy') }};
+from {{ source('housing', 'tenancy') }})
+
+select * from tenancy_stg
+
+
