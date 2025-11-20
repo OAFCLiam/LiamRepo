@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: housing
+    description: "Housing data in test-project-381009.Housing"
+    database: test-project-381009
+    schema: Housing
+
+    tables:
+      - name: asset
+        description: "Raw asset table"
+        columns:
+          - name: asset_id
+            description: "Unique ID of the asset"
+          - name: asset_ref
+          - name: address_line1
+          - name: postcode
+          - name: asset_type
+          - name: bedrooms
+          - name: build_date
+
+      - name: tenancy
+        description: "Raw tenancy table"
+        columns:
+          - name: tenancy_id
+          - name: asset_id
+          - name: person_id
+          - name: tenancy_start_date
+          - name: tenancy_end_date
+          - name: tenancy_status
+
+      - name: rent_account
+        description: "Raw rent account transactions"
+        columns:
+          - name: rent_account_id
+          - name: tenancy_id
+          - name: charge_date
+          - name: charge_amount
+          - name: payment_amount
+          - name: balance
